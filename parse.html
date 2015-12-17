@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+<script>
+
+Parse.initialize("JLwo9Lc2yVyfk5P04BFo07LNJ0SDe5ygReu5PiiA", "29M5wkyzLakOVVazsHVrDjnCwrp5tuFfbOzn2MBA");
+
+
+function SaveSubject()
+{
+	var Subject = Parse.Object.extend("Subject");
+	var query = new Parse.Query(Subject);
+	query.find({
+	  success: function(subjects) {
+		var num = subjects.length;
+		var subject = new Subject();
+		subject.set("identify", "subject_"+num);
+		subject.set("text", "Hallo subject");
+		subject.set("name", "Dmitry Krol");
+		subject.set("num_viewpoints", 0);
+		subject.set("num_questions", 0);
+		subject.save();
+	  }
+	});
+}
+
+function SaveViewpoint()
+{
+	var Subject = Parse.Object.extend("Subject");
+	var query = new Parse.Query(Subject);
+	query.equalTo("identify", "subject_"+0);
+	query.find({
+	  success: function(subjects) {
+		var subject = subjects[0];
+		var num = subject.get("num_viewpoints");
+		subject.set("num_viewpoints", num+1);
+		var Viewpoint = Parse.Object.extend("Viewpoint");
+		var viewpoint = new Viewpoint();
+		viewpoint.set("identify", "viewpoint_"+0+"_"+num);
+		viewpoint.set("text", "Hallo viewpoint");
+		viewpoint.set("name", "Dmitry Krol");
+		viewpoint.set("parent", subject);
+		viewpoint.save();
+	  }
+	});
+}
+
+function RetriveData()
+{
+	var Subject = Parse.Object.extend("Subject");
+	var query = new Parse.Query(Subject);
+	query.find({
+	  success: function(subjects) {
+		for (var i = 0; i < subjects.length; i++) { 
+		    var subject = subjects[i];
+		    alert(subject.get("text"));
+			var Viewpoint = Parse.Object.extend("Viewpoint");
+			var query1 = new Parse.Query(Viewpoint);
+			query1.equalTo("subject", subject);
+			query1.find({
+			  success: function(viewpoints) {
+				for (var j = 0; j < viewpoints.length; j++) { 
+				  var viewpoint = viewpoints[j];
+				  alert(viewpoint.get("text"));
+				}
+			  }
+			});
+			var Question = Parse.Object.extend("Question");
+			var query2 = new Parse.Query(Question);
+			query2.equalTo("subject", subject);
+			query2.find({
+			  success: function(questions) {
+				for (var j = 0; j < questions.length; j++) { 
+				  var question = questions[j];
+				  alert(question.get("text"));
+				}
+			  }
+			});
+		}
+	  }
+	});
+}
+
+function DestroyData()
+{
+	var Subject = Parse.Object.extend("Subject");
+	var query = new Parse.Query(Subject);
+	query.find({
+	  success: function(results) {
+		for (var i = 0; i < results.length; i++)
+		{
+			var subject = results[i];
+			subject.destroy();
+		}
+	  }
+	});
+
+	var Viewpoint = Parse.Object.extend("Viewpoint");
+	var query = new Parse.Query(Viewpoint);
+	query.find({
+	  success: function(results) {
+		for (var i = 0; i < results.length; i++)
+		{
+			var viewpoint = results[i];
+			viewpoint.destroy();
+		}
+	  }
+	});
+
+	var Question = Parse.Object.extend("Question");
+	var query = new Parse.Query(Question);
+	query.find({
+	  success: function(results) {
+		for (var i = 0; i < results.length; i++)
+		{
+			var question = results[i];
+			question.destroy();
+		}
+	  }
+	});
+}
+
+</script>
+
+</head>
+
+<body>
+<button type="button" onClick="SaveSubject()">Save subject</button>
+<button type="button" onClick="SaveViewpoint()">Save viewpoint</button>
+<button type="button" onClick="RetriveData()">Retrive data</button>
+<button type="button" onClick="DestroyData()">Destoy data</button>
+</body>
+</html>

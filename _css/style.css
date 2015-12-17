@@ -1,0 +1,151 @@
+/* CSS Document */
+
+body{
+	font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	margin:0;
+	background-color:white;	
+}
+
+.all_site{
+	max-width:900px;
+	padding:10px;
+	margin:0 auto;	
+	background-color:silver;
+	position:relative;	
+}
+
+.subject{
+	width:100%;
+	box-sizing:border-box;
+	background-color:silver;
+}
+
+.subject_content{
+	width:50%;
+	box-sizing:border-box;
+	height:80px;
+	background-color:white;
+	float:left;
+	border:5px solid silver;
+	padding-left:5px;
+	cursor:pointer;	
+	font-size:12px;
+	overflow:hidden;	
+}
+
+.viewpoints{
+	width:50%;
+	box-sizing:border-box;
+	background-color:white;		
+	float:right;	
+	border:5px solid silver;
+	padding:10px;	
+}
+
+.questions{
+	width:50%;
+	box-sizing:border-box;
+	background-color:white;		
+	float:left;	
+	border:5px solid silver;
+	padding:10px;	
+}
+
+.viewpoint{
+	width:100%;
+	box-sizing:border-box;
+	height:30px;
+	background-color:white;			
+	border:5px solid silver;
+	cursor:pointer;
+	font-size:12px;
+	overflow:hidden;	
+}
+
+.viewpoint_add{
+	width:100%;
+	box-sizing:border-box;
+	background-color:white;			
+	border:5px solid silver;
+	font-size:14px;
+	padding:5px;
+}
+
+.subject_add{
+	width:100%;
+	box-sizing:border-box;
+	background-color:white;			
+	border:5px solid silver;
+	font-size:14px;
+	padding:5px;
+	margin-top:50px;
+}
+
+.viewpoint_image{
+	width:5%;
+	float:left;	
+}
+.viewpoint_name{
+	width:20%;
+	float:left;
+	font-size:9px;	
+}
+.viewpoint_txt{
+	width:60%;
+	float:left;	
+}
+.viewpoint_rating{
+	width:15%;
+	float:left;	
+	font-size:9px;
+}
+
+.popup{
+	background-color:white; 
+	display:none;
+	position:fixed;
+	width:100%;
+	max-width:900px;
+	box-sizing:border-box;
+	border:5px solid silver;
+	overflow:auto;	
+	padding:5px;
+}
+
+.header{
+	background-color:gray; 
+	position:fixed;
+	width:100%;
+	max-width:900px;
+	height:50px;
+	box-sizing:border-box;
+	border:5px solid silver;
+	padding:5px;
+	margin-bottom:100px;
+	text-align:center;
+}
+
+.login_name{
+	color:white;	
+}
+
+#btn_yes{
+	display:none;	
+	cursor:pointer;
+}
+#btn_no{
+	display:none;	
+	cursor:pointer;
+}
+#btn_like{
+	display:none;	
+	cursor:pointer;
+}
+#btn_close{
+	display:none;	
+	cursor:pointer;
+}
+
+p.clear{
+	clear:both;	
+}
